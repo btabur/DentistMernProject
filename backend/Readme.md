@@ -5,5 +5,7 @@
 2. aşama
 - mongoose: mongodb ile node.js projesini bağlantısını sağlayan bir modüldür. `npm i mongoose`
 -dotenv: .env dosyasındaki verileri almak için kullanılır. şifre kullanıcı adı gibi `npm i dotenv`
+3. aşama
+- route klasörünü oluşturma
 
 
