@@ -5,7 +5,7 @@ const mainRoute= require('./routes/index.js')
 
 
 const app =express()
-const port = 5000;
+const port = 5001;
 dotenv.config();
 
 const connect = async ()=> {
@@ -16,6 +16,8 @@ const connect = async ()=> {
         throw error
     }
 }
+//middlewares
+app.use(express.json());
 
 app.use("/api",mainRoute)
 
