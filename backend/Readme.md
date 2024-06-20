@@ -7,5 +7,9 @@
 -dotenv: .env dosyasındaki verileri almak için kullanılır. şifre kullanıcı adı gibi `npm i dotenv`
 3. aşama
 - route klasörünü oluşturma
+- model klasörünü oluşturma
+4. aşama
+- veri tabanına yeni bir kullanıcı ekleme (middleware yazmayı unutma)
+- `npm i bcryptjs` şifreyi şifreleyerek veri tabanına kaydeder.  ` const hashedPassword=await bcrypt.hash(password,10)`
 
 
