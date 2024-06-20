@@ -30,9 +30,51 @@ router.post("/register" ,async(req,res)=> {
 //tüm kullanıcıları getirme
 
 router.get('/',async(req,res)=> {
-    res.send('randevular getirlii')
+    try {
+        const users= await User.find();
+        res.status(200).json(users)
+    } catch (error) {
+        res.status(500).json({error:`server error ${error}`})
+    }
+   
+
+  
+   
 
 })
+// kullanıcı girişi (login)
+
+router.post("/login", async (req,res)=> {
+    try {
+        const {email,password} = req.body
+
+        const user = await User.findOne({email})
+
+        if(!user) {
+            return res.status(401).json({error:"Invalid email "})
+        }
+
+        const isPasswordValid = await bcrypt.compare(password,user.password);
+
+        if(!isPasswordValid) {
+            return res.status(401).json({error:"Invalid password"})
+        }
+
+        res.status(200).json({
+            id:user._id,
+            email:user.email,
+            username:user.username,
+            role: user.role,
+            phone:user.phone,
+            isHappy:user.isHappy,
+            comment:user.comment
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "server error"+error });
+    }
+})
+ 
 
 
 module.exports=router;
